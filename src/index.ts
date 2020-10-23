@@ -1,21 +1,24 @@
-require('dotenv').config();
-const Twitter = require('twitter');
+import { config } from 'dotenv';
+config();
+import Twitter from 'twitter';
 
-const client = new Twitter({
+const credentials = {
     consumer_key: process.env.TWITTER_API_KEY,
     consumer_secret: process.env.TWITTER_API_SECRET,
     access_token_key: process.env.TWITTER_ACCESS_TOKEN,
     access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
-});
+} as Twitter.AccessTokenOptions;
 
-client.stream("statuses/filter", { track: "@FlerteB" }, function(stream) {
-    stream.on("data", function(tweet) {
+const client = new Twitter(credentials);
+
+client.stream("statuses/filter", { track: "@FlerteB" }, (stream): void => {
+    stream.on("data", (tweet): void => {
         const reply = {
             status: "Você não é o steven, mas é meu universo :D",
             in_reply_to_status_id: tweet.id_str
         };
 
-        client.post("statuses/update", reply, function(error, tweetReply, response) {
+        client.post("statuses/update", reply, (error, tweetReply, response): void => {
             if (error) {
                 console.log({ error, reply, response });
             }
@@ -24,7 +27,7 @@ client.stream("statuses/filter", { track: "@FlerteB" }, function(stream) {
         });
     });
 
-    stream.on("error", function(error) {
+    stream.on("error", (error): void => {
         console.log({ "streamError": error });
     });
 });
