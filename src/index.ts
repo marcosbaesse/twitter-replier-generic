@@ -11,12 +11,16 @@ const credentials = {
 
 const client = new Twitter(credentials);
 
-client.stream("statuses/filter", { track: "@FlerteB" }, (stream): void => {
+client.stream("statuses/filter", { track: "@MarcosBBot" }, (stream): void => {
+    console.log("listening...");
+
     stream.on("data", (tweet): void => {
         const reply = {
-            status: "Você não é o steven, mas é meu universo :D",
+            status: `Oi @${tweet.user.screen_name}, precisa de ajuda?`,
             in_reply_to_status_id: tweet.id_str
         };
+
+        console.log({ reply });
 
         client.post("statuses/update", reply, (error, tweetReply, response): void => {
             if (error) {
