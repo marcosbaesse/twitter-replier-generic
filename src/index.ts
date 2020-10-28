@@ -2,6 +2,8 @@ import { config } from 'dotenv';
 config();
 import Twitter from 'twitter';
 
+const lerolero = require('lerolero');
+
 const credentials = {
     consumer_key: process.env.TWITTER_API_KEY,
     consumer_secret: process.env.TWITTER_API_SECRET,
@@ -15,8 +17,10 @@ client.stream("statuses/filter", { track: "@MarcosBBot" }, (stream): void => {
     console.log("listening...");
 
     stream.on("data", (tweet): void => {
+        let replyMessage = lerolero().toLowerCase();
+
         const reply = {
-            status: `Oi @${tweet.user.screen_name}, precisa de ajuda?`,
+            status: `Oi @${tweet.user.screen_name}, ${replyMessage}`,
             in_reply_to_status_id: tweet.id_str
         };
 

@@ -22,7 +22,8 @@
     "dependencies": {
         "axios": "^0.20.0",
         "dotenv": "^8.2.0",
-        "twitter": "^1.7.1"
+        "twitter": "^1.7.1",
+        "lerolero": "^0.1.0"
     },
     "devDependencies": {
         "@types/twitter": "^1.7.0",
