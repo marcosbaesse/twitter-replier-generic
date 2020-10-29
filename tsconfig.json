@@ -1,9 +1,13 @@
 {
     "compilerOptions": {
+        "lib": ["es6"],
         "target": "ES2017",
         "module": "commonjs",
+        "allowJs": true,
         "strict": true,
+        "pretty": true,
         "esModuleInterop": true,
+        "types": ["node", "jest"],
         "forceConsistentCasingInFileNames": true,
         "outDir": "build",
     },
