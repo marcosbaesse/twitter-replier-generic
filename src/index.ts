@@ -24,6 +24,10 @@ client.stream("statuses/filter", { track: "@MarcosBBot" }, (stream): void => {
             in_reply_to_status_id: tweet.id_str
         };
 
+        if(reply.status.length>250){
+            reply.status = reply.status.slice(0,250-reply.status.length)
+        }
+
         console.log({ reply });
 
         client.post("statuses/update", reply, (error, tweetReply, response): void => {
