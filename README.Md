@@ -21,7 +21,7 @@ Bot generico para respostas explorando a api do twitter e utilizando um gerador 
 5. Na pasta do projeto, execute o comando `npm start` para executar a aplicação.
 
 
-## Credits
+## Creditos
 
 - [gugutz/lerolero](https://github.com/gugutz/lerolero)
 - [Bruno Anastacio](https://brunoanastacio.medium.com/)
