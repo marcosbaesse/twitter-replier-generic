@@ -1,11 +1,5 @@
 import Twitter, { AccessTokenOptions } from 'twitter';
-
-interface Tweet {
-    id_str: string;
-    user: {
-        screen_name: string;
-    }
-}
+import Tweet from './interfaces/Tweet';
 class TwitterClient {
 
     private client: Twitter;
@@ -36,7 +30,7 @@ class TwitterClient {
     }
 
     stream(): void {
-        this.client.stream("statuses/filter", { track: "@MarcosBBot" }, (stream: any): void => {
+        this.client.stream("statuses/filter", { track: this.track }, (stream: any): void => {
             console.log("listening...");
 
             stream.on("data", (tweet: any): void => {
