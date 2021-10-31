@@ -1,11 +1,5 @@
 import Twitter, { AccessTokenOptions } from 'twitter';
-
-interface Tweet {
-    id_str: string;
-    user: {
-        screen_name: string;
-    }
-}
+import Tweet from './interfaces/Tweet';
 class TwitterClient {
 
     private client: Twitter;
@@ -19,6 +13,7 @@ class TwitterClient {
     replyGenerate(tweet: Tweet): object {
         const lerolero = require('lerolero');
         let replyMessage = lerolero().toLowerCase();
+
 
         const reply = {
             status: `Oi @${tweet.user.screen_name}, ${replyMessage}`,
