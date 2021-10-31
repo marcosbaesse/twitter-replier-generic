@@ -9,14 +9,17 @@ interface Tweet {
 class TwitterClient {
 
     private client: Twitter;
+    private track: string;
 
     constructor(credentials: AccessTokenOptions) {
         this.client = new Twitter(credentials);
+        this.track = process.env.TWITTER_TRACK || "@MarcosBBot";
     }
 
     replyGenerate(tweet: Tweet): object {
         const lerolero = require('lerolero');
         let replyMessage = lerolero().toLowerCase();
+
 
         const reply = {
             status: `Oi @${tweet.user.screen_name}, ${replyMessage}`,
