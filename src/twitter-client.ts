@@ -9,11 +9,9 @@ interface Tweet {
 class TwitterClient {
 
     private client: Twitter;
-    private track: string;
 
     constructor(credentials: AccessTokenOptions) {
         this.client = new Twitter(credentials);
-        this.track = process.env.TWITTER_TRACK || "@MarcosBBot";
     }
 
     replyGenerate(tweet: Tweet): object {
@@ -35,7 +33,7 @@ class TwitterClient {
     }
 
     stream(): void {
-        this.client.stream("statuses/filter", { track: this.track }, (stream: any): void => {
+        this.client.stream("statuses/filter", { track: "@MarcosBBot" }, (stream: any): void => {
             console.log("listening...");
 
             stream.on("data", (tweet: any): void => {
